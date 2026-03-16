@@ -29,17 +29,18 @@ const App: React.FC = () => {
     if (!isFinished) setLoading(true);
   }, [index, isFinished]);
 
-  const checkAnswer = () => {
-    if (isFinished || !input.trim()) return;
-    
-    if (input.trim().toLowerCase() === questions[index].answer.toLowerCase()) {
-      setScore((prev) => prev + 1);
-      setMessage("✅ Amazing!");
-      setTimeout(handleNextLogic, 1000);
-    } else {
-      setMessage("❌ Try again!");
-    }
-  };
+const checkAnswer = () => {
+  if (isFinished || !input.trim()) return;
+
+  if (input.trim().toLowerCase() === questions[index].answer.toLowerCase()) {
+    setScore((prev) => prev + 1);
+    setMessage("✅ Amazing!");
+    setTimeout(handleNextLogic, 1000);
+  } else {
+    setMessage("❌ Wrong! Moving to next...");
+    setTimeout(handleNextLogic, 1000);
+  }
+};
 
   const handleNextLogic = () => {
     setMessage("");
